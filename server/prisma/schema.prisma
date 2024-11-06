@@ -66,6 +66,7 @@ model question {
 }
 
 model answer {
+  id                      Int      @id @default(autoincrement())
   ticket                  String
   answers                 Int[] // has to be split by module separately.
   current_module          Int      @default(0)
