@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReviewPermission {
+  NONE
+  NUMBER_WRONG
+  QUESTION_NUMBERS
+  ANSWERS
+}
+
+enum GradeMethod {
+  LETTER
+  PASS_FAIL
+  POINTS
+}
+
+model test {
+  id                   String           @id
+  name                 String
+  description          String
+  review_permission    ReviewPermission @default(NUMBER_WRONG)
+  show_point_weight    Boolean          @default(false)
+  review_point_weight  Boolean          @default(false)
+  allow_early_continue Boolean          @default(false)
+  results_available    Boolean          @default(true)
+  grade_method         GradeMethod      @default(LETTER)
+  passing_score        Int              @default(60)
+  tickets              String[]
+  modules              module[]
+  answers              answer[]
+}
+
+model module {
+  id              Int        @id @default(autoincrement())
+  number          Int
+  name            String
+  test_id         String
+  reference_image String?
+  time            Int        @default(0)
+  questions       question[]
+  test            test       @relation(fields: [test_id], references: [id], onDelete: Cascade)
+
+  @@unique([name, test_id])
+  @@unique([number, test_id])
+}
+
+model question {
+  number      Int
+  question    String
+  context     String?
+  points      Float
+  choices     String[]
+  answer      Int
+  explanation String?
+  module_id   Int
+  module      module   @relation(fields: [module_id], references: [id], onDelete: Cascade)
+
+  @@unique([number, module_id])
+}
+
+model answer {
+  ticket                  String
+  answers                 Int[] // has to be split by module separately.
+  current_module          Int      @default(0)
+  start_module_at         DateTime @default(now())
+  module_answers_received Boolean  @default(false)
+  invalid                 Boolean  @default(false)
+  finished                Boolean  @default(false)
+  test_id                 String
+  test                    test     @relation(fields: [test_id], references: [id], onDelete: Cascade)
+
+  @@unique([ticket, test_id])
+}

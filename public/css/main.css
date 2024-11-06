@@ -1,0 +1,261 @@
+p, li {
+  font-size: 13pt;
+  line-height: calc(13pt * line_spacing);
+}
+
+#time, #question-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#bottom-question-number {
+  font-size: 15pt;
+}
+
+#nav-buttons button {
+  padding: 8px 20px;
+  border-radius: 20px !important;
+}
+
+@media screen and (max-width: 800px) {
+  #time, #question-nav {
+    position: relative;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+}
+#open-question-grid:hover {
+  /* #555555; see https://isotropic.co/tool/hex-color-to-css-filter/ */
+  filter: invert(34%) sepia(0%) saturate(385%) hue-rotate(138deg) brightness(88%) contrast(83%);
+  transition: filter 0.2s ease;
+}
+
+#choices {
+  list-style: upper-alpha inside;
+  padding: 0;
+}
+#choices > li {
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px 0;
+}
+#choices > li:hover:not(.selected) {
+  background-color: #eeeeee;
+  transition: background-color 0.2s ease;
+}
+#choices > li.selected {
+  background-color: #cccccc;
+  transition: 0.2s ease;
+}
+
+#body {
+  height: calc(100vh - 200px);
+}
+#body > div {
+  overflow: auto !important;
+}
+
+.vr {
+  width: 4px;
+  border-radius: 2px;
+}
+
+#banner {
+  background-color: #dddddd;
+  padding: 5px 5px 5px 10px;
+  border-left: 8px solid black;
+  border-right: 8px solid black;
+}
+
+.points {
+  font-size: 10pt;
+  font-weight: lighter;
+}
+
+#reference-img {
+  min-width: 500px;
+  max-width: 800px;
+}
+
+#questions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 500px;
+}
+#questions-grid > div {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+#questions-grid > div > h5 {
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+#questions-grid > div:hover:not(.answered) {
+  background-color: #eeeeee;
+}
+#questions-grid > div:not(.answered) {
+  border-style: dotted;
+}
+#questions-grid > div.answered {
+  background-color: #0d6efd;
+  color: white;
+}
+#questions-grid > div.answered:hover {
+  background-color: #0b61e2;
+}
+
+#score {
+  font-size: 50pt;
+}
+
+#review-table tr:hover {
+  cursor: pointer;
+}
+
+#table-body > tr > td * {
+  pointer-events: none;
+}
+
+#review-question-popup {
+  max-height: 90vh;
+}
+#review-question-popup > div {
+  max-height: 70vh;
+}
+#review-question-popup > div > div {
+  overflow: auto !important;
+}
+
+.bg-correct {
+  background-color: #ccffcc;
+}
+
+.bg-incorrect {
+  background-color: #ffcccc;
+}
+
+body, html {
+  height: 100%;
+  background-color: #f8f9fa;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p, li, p *, li * {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+.sans-serif {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+nav * {
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+.btn-black {
+  border: 1px solid black !important;
+  border-radius: 3px !important;
+  color: black;
+}
+.btn-black :hover {
+  background-color: #eeeeee;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-brand {
+  font-size: 13pt;
+}
+
+.navbar-text {
+  text-decoration: none;
+  color: black;
+  font-size: 20pt;
+}
+
+.container-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content at the top */
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-height: 80%; /* Limit container height */
+  overflow-y: auto; /* Allow scrolling for longer content */
+  max-width: 90vw;
+}
+
+.container-card-wide {
+  width: 90%;
+  max-width: 500px;
+}
+
+.abs-pos-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.no-events {
+  pointer-events: none;
+  user-select: none;
+}
+
+.allow-events {
+  pointer-events: all;
+  user-select: text;
+}
+
+.popup {
+  z-index: 1;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
+  z-index: 1; /* Make sure it's above other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .w-75 {
+    width: 95% !important;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

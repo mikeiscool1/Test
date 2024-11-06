@@ -1,0 +1,133 @@
+$font-size: 13pt;
+$line-spacing: 1.5;
+
+p, li {
+  font-size: $font-size;
+  line-height: calc($font-size * line_spacing);
+}
+
+#time, #question-nav {
+  position: absolute; 
+  left: 50%; 
+  transform: translateX(-50%);
+}
+
+#bottom-question-number {
+  font-size: 15pt;
+}
+
+#nav-buttons button {
+  padding: 8px 20px;
+  border-radius: 20px !important;
+}
+
+@media screen and (max-width: 800px) {
+  #time, #question-nav {
+    position: relative;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+}
+
+#open-question-grid:hover {
+  /* #555555; see https://isotropic.co/tool/hex-color-to-css-filter/ */
+  filter: invert(34%) sepia(0%) saturate(385%) hue-rotate(138deg) brightness(88%) contrast(83%);
+  transition: filter 0.2s ease;
+}
+
+#choices {
+  list-style: upper-alpha inside;
+  padding: 0;
+
+  > li {
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0;
+
+    &:hover:not(.selected) {
+      background-color: #eeeeee;
+      transition: background-color 0.2s ease;
+    }
+
+    &.selected {
+      background-color: #cccccc;
+      transition: 0.2s ease;
+    }
+  }
+}
+
+#body {
+  height: calc(100vh - 200px);
+
+  > div {
+    overflow: auto !important;
+  }
+}
+
+.vr {
+  width: 4px;
+  border-radius: 2px;
+}
+
+#banner {
+  background-color: #dddddd;
+  padding: 5px 5px 5px 10px;
+  border-left: 8px solid black;
+  border-right: 8px solid black;
+}
+
+.points {
+  font-size: 10pt;
+  font-weight: lighter;
+}
+
+#reference-img {
+  min-width: 500px;
+  max-width: 800px;
+}
+
+#questions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 500px;
+
+  > div {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+
+    > h5 {
+      padding: 0;
+      margin: 0;
+      pointer-events: none;
+    }
+
+    &:hover:not(.answered) {
+      background-color: #eeeeee;
+    }
+
+    &:not(.answered) {
+      border-style: dotted;
+    }
+    
+    &.answered {
+      background-color: #0d6efd;
+      color: white;
+
+      &:hover {
+        background-color: #0b61e2;
+      }
+    }
+  }
+}
