@@ -305,6 +305,7 @@ export class Test {
       this.requestNextModule();
     } else {
       document.exitFullscreen().catch(() => {});
+      localStorage.setItem('test_id', this.config.id);
       route('done.html', null, done);
     }
   }
