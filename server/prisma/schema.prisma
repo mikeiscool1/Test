@@ -51,6 +51,7 @@ model module {
 }
 
 model question {
+  id          Int      @id @default(autoincrement())
   number      Int
   question    String
   context     String?
