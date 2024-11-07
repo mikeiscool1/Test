@@ -57,7 +57,8 @@ app.post('/api/:testId/begin', async (req, res) => {
       context: true,
       points: true,
       choices: true
-    }
+    },
+    orderBy: { number: 'asc' }
   });
 
   if (!questions) return void res.status(500).send({ message: 'Could not locate the questions.' });
@@ -219,7 +220,8 @@ app.get('/api/:testId/current', async (req, res) => {
       context: true,
       points: true,
       choices: true
-    }
+    },
+    orderBy: { number: 'asc' }
   });
 
   if (!questions) return void res.sendStatus(500);
@@ -277,7 +279,8 @@ app.get('/api/:testId/next', async (req, res) => {
       context: true,
       points: true,
       choices: true
-    }
+    },
+    orderBy: { number: 'asc' }
   });
 
   if (!questions) return void res.sendStatus(500);
