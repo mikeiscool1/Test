@@ -6,6 +6,7 @@ import { popup, removePopup } from "./util.js";
 
 export async function main() {
   const eExit = document.getElementById('exit')!;
+  const eName = document.getElementById('name')!;
   const eScore = document.getElementById('score')!;
   const eScorePercentWrapper = document.getElementById('score-percent-wrapper')!;
   const eScorePercent = document.getElementById('score-percent')!;
@@ -52,6 +53,9 @@ export async function main() {
   });
 
   const res = await req.json();
+
+  const { test_name } = res;
+  eName.innerHTML = test_name;
 
   if (req.status === 403 && res.code === 0) {
     eScore.innerHTML = 'INVALIDATED';
