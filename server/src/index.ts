@@ -326,9 +326,9 @@ app.get('/api/:testId/results', async (req, res) => {
   }});
 
   if (!answer) return void res.status(404).send({ message: 'Submission not found.' });
-  if (answer.invalid) return void res.status(403).send({ message: 'Your test was invalidated.', code: 0 });
-  if (!answer.finished) return void res.status(403).send({ message: 'You have not finished the test.', code: 1 });
-  if (!answer.test.results_available) return void res.status(403).send({ message: 'Results are not available.', code: 2 });
+  if (answer.invalid) return void res.status(403).send({ message: 'Your test was invalidated.', code: 0, test_name: answer.test.name });
+  if (!answer.finished) return void res.status(403).send({ message: 'You have not finished the test.', code: 1, test_name: answer.test.name });
+  if (!answer.test.results_available) return void res.status(403).send({ message: 'Results are not available.', code: 2, test_name: answer.test.name });
 
   const scoreArr = await db.$queryRawUnsafe(scoreQuery, authorization) as any[];
   if (scoreArr.length === 0) return void res.sendStatus(500);
@@ -355,9 +355,9 @@ app.get('/api/:testId/results', async (req, res) => {
         delete q.explanation;
       }));
 
-      return void res.send({ score, modules: test.modules, review_permission: ReviewPermission.QUESTION_NUMBERS })
+      return void res.send({ score, modules: test.modules, review_permission: ReviewPermission.QUESTION_NUMBERS, test_name: answer.test.name })
     case ReviewPermission.ANSWERS:
-      return void res.send({ score, modules: test.modules, your_answers: answer.answers, review_permission: ReviewPermission.ANSWERS, review_point_weight: test.review_point_weight });
+      return void res.send({ score, modules: test.modules, your_answers: answer.answers, review_permission: ReviewPermission.ANSWERS, review_point_weight: test.review_point_weight, test_name: answer.test.name });
   }
 });
 
