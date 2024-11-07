@@ -124,7 +124,7 @@ export class Test {
 
       eQuestionAndChoices.classList.remove('mx-auto', 'w-75');
       eQuestionAndChoices.classList.add('w-50');
-      eCtx.innerHTML = question.context.repeat(30);
+      eCtx.innerHTML = question.context;
     } else {
       eCtxWrap.classList.add('d-none');
       eCtxSplit.classList.add('d-none');
