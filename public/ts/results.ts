@@ -100,7 +100,7 @@ export async function main() {
   for (const module of modules) {
     for (const q of module.questions) {
       const tr = document.createElement('tr');
-      tr.id = `${module.number},${q.number},${your_answers[i]}`;
+      tr.id = `${module.number},${q.number},${your_answers?.[i]}`;
 
       const tdQ = document.createElement('td');
       tdQ.innerHTML = (q.number + 1).toString();
