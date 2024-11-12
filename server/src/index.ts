@@ -345,10 +345,10 @@ app.get('/api/:testId/results', async (req, res) => {
       delete (score as any).total_wrong;
       delete (score as any).wrong_answer_indices;
 
-      return void res.send({ score, review_permission: ReviewPermission.NONE });
+      return void res.send({ score, review_permission: ReviewPermission.NONE, test_name: answer.test.name });
     case ReviewPermission.NUMBER_WRONG:
       delete (score as any).wrong_answer_indices;
-      return void res.send({ score, review_permission: ReviewPermission.NUMBER_WRONG });
+      return void res.send({ score, review_permission: ReviewPermission.NUMBER_WRONG, test_name: answer.test.name });
     case ReviewPermission.QUESTION_NUMBERS:
       test.modules.forEach(m => m.questions.forEach((q: any) => {
         delete q.answer;
